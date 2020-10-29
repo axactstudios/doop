@@ -58,7 +58,9 @@ class _LoginPageState extends State<LoginPage>
           height: MediaQuery.of(context).size.height >= 775.0
               ? MediaQuery.of(context).size.height
               : 775.0,
-          decoration: new BoxDecoration(),
+          decoration: new BoxDecoration(
+            color: Color(0xFFfab300),
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
@@ -143,7 +145,7 @@ class _LoginPageState extends State<LoginPage>
       width: 150.0,
       height: 50.0,
       decoration: BoxDecoration(
-        color: Color(0x552B2B2B),
+        color: Color(0xFFfab300),
         borderRadius: BorderRadius.all(Radius.circular(25.0)),
       ),
       child: CustomPaint(
@@ -202,6 +204,7 @@ class _LoginPageState extends State<LoginPage>
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Container(
+                  color: Color(0xFF2e2d2d),
                   width: 300.0,
                   height: 180.0,
                   child: Column(
@@ -216,17 +219,21 @@ class _LoginPageState extends State<LoginPage>
                           style: TextStyle(
                               fontFamily: "WorkSansSemiBold",
                               fontSize: 16.0,
-                              color: Colors.black),
+                              color: Colors.white),
                           decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFF2e2d2d),
                             border: InputBorder.none,
                             icon: Icon(
                               Icons.mail,
-                              color: Colors.black,
+                              color: Colors.white,
                               size: 22.0,
                             ),
                             hintText: "Email Address",
                             hintStyle: TextStyle(
-                                fontFamily: "WorkSansSemiBold", fontSize: 17.0),
+                                color: Colors.white,
+                                fontFamily: "WorkSansSemiBold",
+                                fontSize: 17.0),
                           ),
                         ),
                       ),
@@ -243,19 +250,22 @@ class _LoginPageState extends State<LoginPage>
                           controller: loginPasswordController,
                           obscureText: _obscureTextLogin,
                           style: TextStyle(
-                              fontFamily: "WorkSansSemiBold",
-                              fontSize: 16.0,
-                              color: Colors.black),
+                            fontFamily: "WorkSansSemiBold",
+                            fontSize: 16.0,
+                            color: Colors.white,
+                          ),
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             icon: Icon(
                               Icons.lock,
                               size: 22.0,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                             hintText: "Password",
                             hintStyle: TextStyle(
-                                fontFamily: "WorkSansSemiBold", fontSize: 17.0),
+                                color: Colors.white,
+                                fontFamily: "WorkSansSemiBold",
+                                fontSize: 17.0),
                             suffixIcon: GestureDetector(
                               onTap: _toggleLogin,
                               child: Icon(
@@ -263,7 +273,7 @@ class _LoginPageState extends State<LoginPage>
                                     ? Icons.remove_red_eye
                                     : Icons.remove_red_eye_outlined,
                                 size: 15.0,
-                                color: Colors.black,
+                                color: Colors.white,
                               ),
                             ),
                           ),
@@ -274,15 +284,12 @@ class _LoginPageState extends State<LoginPage>
                 ),
               ),
               Container(
-                  margin: EdgeInsets.only(top: 175.0),
+                  margin: EdgeInsets.only(top: 215.0),
                   decoration: new BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                     boxShadow: <BoxShadow>[],
                     gradient: new LinearGradient(
-                        colors: [
-                          MyColors.loginGradientEnd,
-                          MyColors.loginGradientStart
-                        ],
+                        colors: [Color(0xFF2e2d2d), Color(0xFF2e2d2d)],
                         begin: const FractionalOffset(0.2, 0.2),
                         end: const FractionalOffset(1.0, 1.0),
                         stops: [0.0, 1.0],
@@ -296,9 +303,9 @@ class _LoginPageState extends State<LoginPage>
                         child: Text(
                           "LOGIN",
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25.0,
-                              fontFamily: "WorkSansBold"),
+                            color: Colors.white,
+                            fontSize: 20.0,
+                          ),
                         ),
                       ),
                       onPressed: () {
