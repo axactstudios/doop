@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 class TriangleTopBlueHeader extends StatelessWidget {
-    TriangleTopBlueHeader({@required this.child});
+  TriangleTopBlueHeader({@required this.child});
 
   final Widget child;
 
@@ -16,11 +16,10 @@ class TriangleTopBlueHeader extends StatelessWidget {
 }
 
 class TriangleCut extends CustomPainter {
-
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
-      ..color = Colors.blueAccent
+      ..color = Color(0xFFfab300)
       ..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
@@ -32,7 +31,7 @@ class TriangleCut extends CustomPainter {
     path.close();
 
     canvas.drawPath(path, paint);
-    canvas.drawShadow(path, Colors.blueAccent, 4.0, true);
+    canvas.drawShadow(path, Color(0xFFfab300), 4.0, true);
     canvas.restore();
   }
 

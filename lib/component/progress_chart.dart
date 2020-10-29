@@ -7,15 +7,16 @@ import 'package:intl/intl.dart';
 import 'package:tuple/tuple.dart';
 
 class ProgressChart extends StatelessWidget {
+  Color color;
   static const int NUMBER_OF_DAYS = 5;
   final List<GraphEntry> entries;
 
-  ProgressChart(this.entries);
+  ProgressChart(this.entries, this.color);
 
   @override
   Widget build(BuildContext context) {
     return new CustomPaint(
-      painter: new ChartPainter(_prepareEntryList(entries)),
+      painter: new ChartPainter(_prepareEntryList(entries), color),
     );
   }
 
@@ -90,8 +91,9 @@ class ProgressChart extends StatelessWidget {
 
 class ChartPainter extends CustomPainter {
   final List<GraphEntry> entries;
+  MaterialColor color;
 
-  ChartPainter(this.entries);
+  ChartPainter(this.entries, this.color);
 
   double leftOffsetStart;
   double topOffsetEnd;
@@ -124,7 +126,7 @@ class ChartPainter extends CustomPainter {
   ///draws actual chart
   void _drawLines(ui.Canvas canvas, int minLineValue, int maxLineValue) {
     final paint = new Paint()
-      ..color = Colors.blue[400]
+      ..color = color[400]
       ..strokeWidth = 3.0;
     DateTime beginningOfChart = _getStartDateOfChart();
     for (int i = 0; i < entries.length - 1; i++) {

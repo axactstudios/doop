@@ -7,12 +7,12 @@ import 'package:doop/component/triangle_top_header.dart';
 import 'package:doop/model/graph_entry.dart';
 import 'package:doop/screen/onboarding/onboarding_animation.dart';
 
+import '../../main.dart';
+
 class OnBoardingPage extends StatefulWidget {
   @override
   _OnBoardingPageState createState() => _OnBoardingPageState();
 }
-
-int len = 0;
 
 class _OnBoardingPageState extends State<OnBoardingPage>
     with TickerProviderStateMixin {
@@ -33,15 +33,9 @@ class _OnBoardingPageState extends State<OnBoardingPage>
     _getPagerItem()
   ];
 
-  getLen() async {
-    len = await Firestore.instance.collection("Users").snapshots().length;
-    setState(() {
-      print(len);
-    });
-  }
-
   @override
   void initState() {
+    getLen();
     super.initState();
     animationController = new AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this)
@@ -63,9 +57,22 @@ class _OnBoardingPageState extends State<OnBoardingPage>
       });
 
     onBoardingEnterAnimation = OnBoardingEnterAnimation(animationController);
-    getLen();
 
     animationController.forward();
+  }
+
+  getLen() async {
+    var snap = Firestore.instance.collection("Users").snapshots();
+    snap.forEach((element) {
+      setState(() async {
+        len = element.documents.length;
+        print(element.documents.first.documentID);
+      });
+    });
+    setState(() {
+      print(
+          "========================================================================================================================================$len");
+    });
   }
 
   @override
@@ -76,9 +83,9 @@ class _OnBoardingPageState extends State<OnBoardingPage>
 
   @override
   Widget build(BuildContext context) {
+    getLen();
     var size = MediaQuery.of(context).size;
     TextTheme textTheme = Theme.of(context).textTheme;
-    getLen();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -91,31 +98,41 @@ class _OnBoardingPageState extends State<OnBoardingPage>
               textTheme,
               size.width * 0.1,
               size.height * 0.1,
-              activityList[0],
+              DailyActivityModel(label: "Visitors", valueUnitList: [
+                UnitValueModel(value: "19", unit: ""),
+              ]),
               onBoardingEnterAnimation.dailyActivity1translation.value),
           _setActivityData(
               textTheme,
               size.width * 0.45,
               size.height * 0.1,
-              activityList[1],
+              DailyActivityModel(label: "Active Volunteers", valueUnitList: [
+                UnitValueModel(value: len.toString(), unit: "")
+              ]),
               onBoardingEnterAnimation.dailyActivity1translation.value),
           _setActivityData(
               textTheme,
               size.width * 0.1,
               size.height * 0.22,
-              activityList[2],
+              DailyActivityModel(
+                  label: "Locations",
+                  valueUnitList: [UnitValueModel(value: "18", unit: "")]),
               onBoardingEnterAnimation.dailyActivity1translation.value),
           _setActivityData(
               textTheme,
               size.width * 0.45,
               size.height * 0.22,
-              activityList[3],
+              DailyActivityModel(
+                  label: "Batches",
+                  valueUnitList: [UnitValueModel(value: "0", unit: "")]),
               onBoardingEnterAnimation.dailyActivity1translation.value),
           _setActivityData(
               textTheme,
               size.width * 0.1,
               size.height * 0.34,
-              activityList[4],
+              DailyActivityModel(
+                  label: "Attendance",
+                  valueUnitList: [UnitValueModel(value: "70%", unit: "")]),
               onBoardingEnterAnimation.dailyActivity1translation.value),
           _createLineChart(size, textTheme),
           _createPagerIndicator(size),
@@ -182,7 +199,7 @@ class _OnBoardingPageState extends State<OnBoardingPage>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "last activity",
+            "Upcoming Dance Programme",
             style: TextStyle(
                 fontSize: 16.0,
                 fontStyle: FontStyle.normal,
@@ -193,7 +210,7 @@ class _OnBoardingPageState extends State<OnBoardingPage>
             height: 4,
           ),
           Text(
-            "running 2hrs ago",
+            "3 days to go",
             style: TextStyle(
                 fontSize: 14.0,
                 fontStyle: FontStyle.normal,
@@ -216,7 +233,7 @@ class _OnBoardingPageState extends State<OnBoardingPage>
                 width: 4,
               ),
               Text(
-                "47 min",
+                "45 min",
                 style: TextStyle(
                     fontSize: 12.0,
                     fontStyle: FontStyle.normal,
@@ -235,7 +252,7 @@ class _OnBoardingPageState extends State<OnBoardingPage>
                 width: 4,
               ),
               Text(
-                "3 km",
+                "Opera",
                 style: TextStyle(
                     fontSize: 12.0,
                     fontStyle: FontStyle.normal,
@@ -272,62 +289,65 @@ class _OnBoardingPageState extends State<OnBoardingPage>
       child: Transform(
         transform: Matrix4.translationValues(
             -onBoardingEnterAnimation.graphLabelXtranslation.value, 0, 0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             Text(
-              "active\nhours",
+              "Attendance",
               style: textTheme.headline.copyWith(color: Colors.black87),
             ),
-            SizedBox(
-              width: 12,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 2.0),
-              child: Card(
-                shape: CircleBorder(),
-                child: Container(
-                  height: 8,
-                  width: 8,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.blue,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 2.0),
+                  child: Card(
+                    shape: CircleBorder(),
+                    child: Container(
+                      height: 8,
+                      width: 8,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.blue,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 2.0),
-              child: Text(
-                "weekly",
-                style: textTheme.subhead.copyWith(color: Colors.blue),
-              ),
-            ),
-            SizedBox(
-              width: 4,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 2.0),
-              child: Card(
-                shape: CircleBorder(),
-                child: Container(
-                  height: 8,
-                  width: 8,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.red,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 2.0),
+                  child: Text(
+                    "Weekly",
+                    style: textTheme.subhead.copyWith(color: Colors.blue),
                   ),
                 ),
-              ),
+                SizedBox(width: 12),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 2.0),
+                  child: Card(
+                    shape: CircleBorder(),
+                    child: Container(
+                      height: 8,
+                      width: 8,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 2.0),
+                  child: Text(
+                    "Average",
+                    style: textTheme.subhead.copyWith(color: Colors.red),
+                  ),
+                ),
+                SizedBox(
+                  width: 4,
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 2.0),
-              child: Text(
-                "avg",
-                style: textTheme.subhead.copyWith(color: Colors.red),
-              ),
-            )
           ],
         ),
       ));
@@ -344,18 +364,34 @@ class _OnBoardingPageState extends State<OnBoardingPage>
                 child: _textValueUnitContainer(textTheme, dailyActivityModel)),
           ));
 
-  _createLineChart(Size size, TextTheme textTheme) => Positioned(
-      top: size.height * 0.7,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      child: Transform(
-          transform: Matrix4.translationValues(
-              0, onBoardingEnterAnimation.graphYtranslation.value, 0),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ProgressChart(entriesList),
-          )));
+  _createLineChart(Size size, TextTheme textTheme) => Stack(
+        children: [
+          Positioned(
+              top: size.height * 0.7,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Transform(
+                  transform: Matrix4.translationValues(
+                      0, onBoardingEnterAnimation.graphYtranslation.value, 0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ProgressChart(entriesList, Colors.blue),
+                  ))),
+          Positioned(
+              top: size.height * 0.7,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Transform(
+                  transform: Matrix4.translationValues(
+                      0, onBoardingEnterAnimation.graphYtranslation.value, 0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ProgressChart(entriesList2, Colors.red),
+                  ))),
+        ],
+      );
 
   _createPagerIndicator(Size size) => new Positioned(
         left: size.width * 0.45,
@@ -444,24 +480,6 @@ class DailyActivityModel {
   final List<UnitValueModel> valueUnitList;
 }
 
-final List<DailyActivityModel> activityList = [
-  DailyActivityModel(label: "sleep", valueUnitList: [
-    UnitValueModel(value: "6", unit: "h"),
-    UnitValueModel(value: "29", unit: "m")
-  ]),
-  DailyActivityModel(
-      label: "Total Volunteers",
-      valueUnitList: [UnitValueModel(value: len.toString(), unit: "bpm")]),
-  DailyActivityModel(
-      label: "steps", valueUnitList: [UnitValueModel(value: "1238", unit: "")]),
-  DailyActivityModel(
-      label: "temperature",
-      valueUnitList: [UnitValueModel(value: "93.8°", unit: "")]),
-  DailyActivityModel(
-      label: "calories",
-      valueUnitList: [UnitValueModel(value: "234", unit: "cal")])
-];
-
 final List<GraphEntry> entriesList = [
   GraphEntry(DateTime.now(), 23, ""),
   GraphEntry(DateTime.now().subtract(Duration(days: 1)), 25, ""),
@@ -469,4 +487,12 @@ final List<GraphEntry> entriesList = [
   GraphEntry(DateTime.now().subtract(Duration(days: 3)), 12, ""),
   GraphEntry(DateTime.now().subtract(Duration(days: 4)), 33, ""),
   GraphEntry(DateTime.now().subtract(Duration(days: 5)), 22, ""),
+];
+final List<GraphEntry> entriesList2 = [
+  GraphEntry(DateTime.now(), 10, ""),
+  GraphEntry(DateTime.now().subtract(Duration(days: 1)), 12, ""),
+  GraphEntry(DateTime.now().subtract(Duration(days: 2)), 20, ""),
+  GraphEntry(DateTime.now().subtract(Duration(days: 3)), 25, ""),
+  GraphEntry(DateTime.now().subtract(Duration(days: 4)), 22, ""),
+  GraphEntry(DateTime.now().subtract(Duration(days: 5)), 43, ""),
 ];

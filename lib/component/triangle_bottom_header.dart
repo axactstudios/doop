@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 class TriangleBottomHeader extends StatelessWidget {
-    TriangleBottomHeader(this.child);
+  TriangleBottomHeader(this.child);
 
   final Widget child;
 
@@ -16,7 +16,6 @@ class TriangleBottomHeader extends StatelessWidget {
 }
 
 class TriangleCut extends CustomPainter {
-
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
