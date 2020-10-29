@@ -31,6 +31,7 @@ dependencies:
   charts_flutter: ^0.5.0
   tuple: "^1.0.1"
   intl: "^0.15.7"
+  avatar_glow: ^1.2.0
   firebase_auth: ^0.16.1
   firebase_core: ^0.4.4
   cloud_firestore: ^0.13.7
@@ -40,6 +41,7 @@ dependencies:
   progress_dialog: ^1.2.4
   image_picker: ^0.6.7+3
   path_provider: ^1.6.11
+  google_fonts: ^0.3.10
 
 dev_dependencies:
   flutter_test:
@@ -57,8 +59,15 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-   assets:
-     - assets/cropped-logo.png
+  assets:
+    - assets/cropped-logo.png
+
+  fonts:
+    - family: Josefin Sans
+      fonts:
+        - asset: assets/.15623.otf
+          weight: 700
+        - asset: assets/.15627.otf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
