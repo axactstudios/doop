@@ -180,111 +180,199 @@ class _ViewAllState extends State<ViewAll> {
                                                                       height:
                                                                           15,
                                                                     ),
-                                                                    Text(
-                                                                      'Name- ${volunteers[i].name}',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            20,
-                                                                      ),
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .start,
+                                                                    Row(
+                                                                      children: [
+                                                                        Text(
+                                                                          'Name- ',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.start,
+                                                                        ),
+                                                                        Container(
+                                                                          width:
+                                                                              pWidth * 0.6,
+                                                                          child:
+                                                                              Text(
+                                                                            volunteers[i].name,
+                                                                            style: TextStyle(
+                                                                                color: Color(0xFF808080),
+                                                                                fontFamily: 'nunito',
+                                                                                fontSize: 18,
+                                                                                fontWeight: FontWeight.normal),
+                                                                            textAlign:
+                                                                                TextAlign.start,
+                                                                          ),
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                     SizedBox(
                                                                       height:
                                                                           10,
                                                                     ),
-                                                                    Text(
-                                                                      'Age- ${volunteers[i].age}',
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .black,
-                                                                          fontFamily:
-                                                                              'nunito',
-                                                                          fontSize:
-                                                                              20,
-                                                                          fontWeight:
-                                                                              FontWeight.normal),
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .left,
+                                                                    Row(
+                                                                      children: [
+                                                                        Text(
+                                                                          'Age- ',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.start,
+                                                                        ),
+                                                                        Container(
+                                                                          width:
+                                                                              pWidth * 0.6,
+                                                                          child:
+                                                                              Text(
+                                                                            volunteers[i].age,
+                                                                            style: TextStyle(
+                                                                                color: Color(0xFF808080),
+                                                                                fontFamily: 'nunito',
+                                                                                fontSize: 18,
+                                                                                fontWeight: FontWeight.normal),
+                                                                            textAlign:
+                                                                                TextAlign.start,
+                                                                          ),
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                     SizedBox(
                                                                       height:
                                                                           10,
                                                                     ),
-                                                                    Text(
-                                                                      'Address- ${volunteers[i].address}',
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .black,
-                                                                          fontFamily:
-                                                                              'nunito',
-                                                                          fontSize:
-                                                                              20,
-                                                                          fontWeight:
-                                                                              FontWeight.normal),
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .left,
+                                                                    Row(
+                                                                      children: [
+                                                                        Text(
+                                                                          'Address- ',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.start,
+                                                                        ),
+                                                                        Container(
+                                                                          width:
+                                                                              pWidth * 0.6,
+                                                                          child:
+                                                                              Text(
+                                                                            volunteers[i].address,
+                                                                            style: TextStyle(
+                                                                                color: Color(0xFF808080),
+                                                                                fontFamily: 'nunito',
+                                                                                fontSize: 18,
+                                                                                fontWeight: FontWeight.normal),
+                                                                            textAlign:
+                                                                                TextAlign.start,
+                                                                          ),
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                     SizedBox(
                                                                       height:
                                                                           10,
                                                                     ),
-                                                                    Text(
-                                                                      'Email- ${volunteers[i].email}',
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .black,
-                                                                          fontFamily:
-                                                                              'nunito',
-                                                                          fontSize:
-                                                                              20,
-                                                                          fontWeight:
-                                                                              FontWeight.normal),
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .left,
+                                                                    Row(
+                                                                      children: [
+                                                                        Text(
+                                                                          'Email- ',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.start,
+                                                                        ),
+                                                                        Container(
+                                                                          width:
+                                                                              pWidth * 0.6,
+                                                                          child:
+                                                                              Text(
+                                                                            volunteers[i].email,
+                                                                            style: TextStyle(
+                                                                                color: Color(0xFF808080),
+                                                                                fontFamily: 'nunito',
+                                                                                fontSize: 18,
+                                                                                fontWeight: FontWeight.normal),
+                                                                            textAlign:
+                                                                                TextAlign.start,
+                                                                          ),
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                     SizedBox(
                                                                       height:
                                                                           10,
                                                                     ),
-                                                                    Text(
-                                                                      'Birth date- ${volunteers[i].bdate}',
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .black,
-                                                                          fontFamily:
-                                                                              'nunito',
-                                                                          fontSize:
-                                                                              20,
-                                                                          fontWeight:
-                                                                              FontWeight.normal),
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .left,
+                                                                    Row(
+                                                                      children: [
+                                                                        Text(
+                                                                          'Birth date- ',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.start,
+                                                                        ),
+                                                                        Container(
+                                                                          width:
+                                                                              pWidth * 0.6,
+                                                                          child:
+                                                                              Text(
+                                                                            volunteers[i].bdate,
+                                                                            style: TextStyle(
+                                                                                color: Color(0xFF808080),
+                                                                                fontFamily: 'nunito',
+                                                                                fontSize: 18,
+                                                                                fontWeight: FontWeight.normal),
+                                                                            textAlign:
+                                                                                TextAlign.start,
+                                                                          ),
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                     SizedBox(
                                                                       height:
                                                                           10,
                                                                     ),
-                                                                    Text(
-                                                                      'Parent\'s name- ${volunteers[i].pName}',
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .black,
-                                                                          fontFamily:
-                                                                              'nunito',
-                                                                          fontSize:
-                                                                              20,
-                                                                          fontWeight:
-                                                                              FontWeight.normal),
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .left,
+                                                                    Row(
+                                                                      children: [
+                                                                        Text(
+                                                                          'Parent\'s Name- ',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.start,
+                                                                        ),
+                                                                        Container(
+                                                                          width:
+                                                                              pWidth * 0.6,
+                                                                          child:
+                                                                              Text(
+                                                                            volunteers[i].pName,
+                                                                            style: TextStyle(
+                                                                                color: Color(0xFF808080),
+                                                                                fontFamily: 'nunito',
+                                                                                fontSize: 18,
+                                                                                fontWeight: FontWeight.normal),
+                                                                            textAlign:
+                                                                                TextAlign.start,
+                                                                          ),
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                     SizedBox(
                                                                       height:
@@ -426,7 +514,7 @@ class _ViewAllState extends State<ViewAll> {
                                                               ),
                                                               Text(
                                                                 volunteers[i]
-                                                                    .bdate,
+                                                                    .address,
                                                                 style:
                                                                     TextStyle(
                                                                   fontFamily:
@@ -477,36 +565,36 @@ class _ViewAllState extends State<ViewAll> {
                                                       ],
                                                     ),
                                                   ),
-                                                  Positioned(
-                                                      right: 0,
-                                                      top: 0,
-                                                      child: Container(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child: Text(
-                                                            volunteers[i]
-                                                                .address,
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white),
-                                                          ),
-                                                        ),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color:
-                                                              Color(0xFFfab300),
-                                                          borderRadius:
-                                                              BorderRadius.only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          5),
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          5)),
-                                                        ),
-                                                      )),
+                                                  // Positioned(
+                                                  //     right: 0,
+                                                  //     top: 0,
+                                                  //     child: Container(
+                                                  //       child: Padding(
+                                                  //         padding:
+                                                  //             const EdgeInsets
+                                                  //                 .all(8.0),
+                                                  //         child: Text(
+                                                  //           volunteers[i]
+                                                  //               .address,
+                                                  //           style: TextStyle(
+                                                  //               color: Colors
+                                                  //                   .white),
+                                                  //         ),
+                                                  //       ),
+                                                  //       decoration:
+                                                  //           BoxDecoration(
+                                                  //         color:
+                                                  //             Color(0xFFfab300),
+                                                  //         borderRadius:
+                                                  //             BorderRadius.only(
+                                                  //                 topLeft: Radius
+                                                  //                     .circular(
+                                                  //                         5),
+                                                  //                 bottomRight: Radius
+                                                  //                     .circular(
+                                                  //                         5)),
+                                                  //       ),
+                                                  //     )),
                                                 ],
                                               ),
                                             ),
