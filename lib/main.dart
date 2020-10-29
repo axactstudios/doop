@@ -9,6 +9,8 @@ import 'package:doop/screen/activity_page/activity_page.dart';
 import 'package:doop/screen/onboarding/onboarding_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'login.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -179,29 +181,19 @@ class _MyApp1State extends State<MyApp1> with SingleTickerProviderStateMixin {
                 height: 30.0,
               ),
               DelayedAnimation(
-                child: Text(
-                  "INITIATIVE BY",
-                  style: GoogleFonts.josefinSans(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold),
-                ),
-                delay: delayedAmount + 3000,
-              ),
-              DelayedAnimation(
-                child: Text(
-                  "SINHAYANA FOUNDATION",
-                  style: GoogleFonts.josefinSans(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold),
-                ),
+                child: Container(
+                    color: Colors.black,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        'assets/sinhayana_logo.png',
+                        height: 100,
+                      ),
+                    )),
                 delay: delayedAmount + 3000,
               ),
               SizedBox(
-                height: 100.0,
+                height: 50.0,
               ),
               DelayedAnimation(
                 child: GestureDetector(
@@ -251,8 +243,8 @@ class _MyApp1State extends State<MyApp1> with SingleTickerProviderStateMixin {
 
   Widget get _animatedButtonUI => InkWell(
         onTap: () async {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => OnBoardingPage()));
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => LoginPage()));
         },
         child: Container(
           height: 60,

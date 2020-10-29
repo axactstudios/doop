@@ -53,7 +53,7 @@ class _ActivityPageState extends State<ActivityPage>
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      backgroundColor: Color(0xFF2e2d2d),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,14 +84,13 @@ class _ActivityPageState extends State<ActivityPage>
               child: _getListItem(textTheme, 'Add Volunteer', Icons.add),
             ),
             InkWell(
-              child:
-                  _getListItem(textTheme, 'View All', Icons.supervisor_account),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ViewAll()));
-              },
-            ),
-            _getListItem(textTheme, 'Bicycle', Icons.motorcycle),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ViewAll()));
+                },
+                child: _getListItem(textTheme, 'View All', Icons.list)),
+            _getListItem(
+                textTheme, 'Take Attendance', Icons.supervisor_account),
           ],
         ),
       ));
@@ -138,8 +137,8 @@ class _ActivityPageState extends State<ActivityPage>
           transform: Matrix4.translationValues(
               -activityEnterAnimation.labelXtranslation.value, 0, 0),
           child: Text(
-            "Select your activity",
-            style: textTheme.caption.copyWith(color: Colors.white),
+            "Choose",
+            style: textTheme.caption.copyWith(color: Color(0xfffab300)),
             textAlign: TextAlign.left,
           ),
         ),
