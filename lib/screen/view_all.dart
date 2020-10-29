@@ -549,7 +549,7 @@ class _ViewAllState extends State<ViewAll> {
                                                                       'Poppins',
                                                                   fontSize:
                                                                       pHeight *
-                                                                          0.025,
+                                                                          0.02,
                                                                   color: Colors
                                                                       .black
                                                                       .withOpacity(

@@ -15,7 +15,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   final FocusNode myFocusNodeEmailLogin = FocusNode();
@@ -125,7 +124,9 @@ class _LoginPageState extends State<LoginPage>
 
   void showInSnackBar(String value) {
     FocusScope.of(context).requestFocus(new FocusNode());
+    // ignore: deprecated_member_use
     _scaffoldKey.currentState?.removeCurrentSnackBar();
+    // ignore: deprecated_member_use
     _scaffoldKey.currentState.showSnackBar(new SnackBar(
       content: new Text(
         value,
@@ -195,6 +196,7 @@ class _LoginPageState extends State<LoginPage>
         children: <Widget>[
           Stack(
             alignment: Alignment.topCenter,
+            // ignore: deprecated_member_use
             overflow: Overflow.visible,
             children: <Widget>[
               Card(
@@ -370,26 +372,9 @@ class _LoginPageState extends State<LoginPage>
         duration: Duration(milliseconds: 500), curve: Curves.decelerate);
   }
 
-  void _onSignUpButtonPress() {
-    _pageController?.animateToPage(1,
-        duration: Duration(milliseconds: 500), curve: Curves.decelerate);
-  }
-
   void _toggleLogin() {
     setState(() {
       _obscureTextLogin = !_obscureTextLogin;
-    });
-  }
-
-  void _toggleSignup() {
-    setState(() {
-      _obscureTextSignup = !_obscureTextSignup;
-    });
-  }
-
-  void _toggleSignupConfirm() {
-    setState(() {
-      _obscureTextSignupConfirm = !_obscureTextSignupConfirm;
     });
   }
 }

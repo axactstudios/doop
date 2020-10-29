@@ -29,8 +29,8 @@ class TriangleCut extends CustomPainter {
     path.lineTo(size.width, 0.0);
     path.close();
     path.close();
-
     canvas.drawPath(path, paint);
+
     canvas.drawShadow(path, Colors.black, 2.0, false);
     canvas.restore();
   }

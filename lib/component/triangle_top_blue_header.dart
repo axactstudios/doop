@@ -9,7 +9,7 @@ class TriangleTopBlueHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new CustomPaint(
-      painter: new TriangleCut(),
+      painter: TriangleCut(),
       child: child,
     );
   }
