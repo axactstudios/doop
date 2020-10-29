@@ -1,4 +1,5 @@
 import 'package:doop/screen/add_volunteer.dart';
+import 'package:doop/screen/view_all.dart';
 import 'package:flutter/material.dart';
 
 import 'activity_page_animation.dart';
@@ -82,7 +83,14 @@ class _ActivityPageState extends State<ActivityPage>
               },
               child: _getListItem(textTheme, 'Add Volunteer', Icons.add),
             ),
-            _getListItem(textTheme, 'View All', Icons.supervisor_account),
+            InkWell(
+              child:
+                  _getListItem(textTheme, 'View All', Icons.supervisor_account),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ViewAll()));
+              },
+            ),
             _getListItem(textTheme, 'Bicycle', Icons.motorcycle),
           ],
         ),
