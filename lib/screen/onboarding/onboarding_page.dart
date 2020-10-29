@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:doop/component/dots_indicator.dart';
 import 'package:doop/component/progress_chart.dart';
@@ -10,6 +11,8 @@ class OnBoardingPage extends StatefulWidget {
   @override
   _OnBoardingPageState createState() => _OnBoardingPageState();
 }
+
+int len = 0;
 
 class _OnBoardingPageState extends State<OnBoardingPage>
     with TickerProviderStateMixin {
@@ -29,6 +32,13 @@ class _OnBoardingPageState extends State<OnBoardingPage>
     _getPagerItem(),
     _getPagerItem()
   ];
+
+  getLen() async {
+    len = await Firestore.instance.collection("Users").snapshots().length;
+    setState(() {
+      print(len);
+    });
+  }
 
   @override
   void initState() {
@@ -53,6 +63,7 @@ class _OnBoardingPageState extends State<OnBoardingPage>
       });
 
     onBoardingEnterAnimation = OnBoardingEnterAnimation(animationController);
+    getLen();
 
     animationController.forward();
   }
@@ -67,7 +78,7 @@ class _OnBoardingPageState extends State<OnBoardingPage>
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     TextTheme textTheme = Theme.of(context).textTheme;
-
+    getLen();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -439,8 +450,8 @@ final List<DailyActivityModel> activityList = [
     UnitValueModel(value: "29", unit: "m")
   ]),
   DailyActivityModel(
-      label: "heart rate",
-      valueUnitList: [UnitValueModel(value: "89", unit: "bpm")]),
+      label: "Total Volunteers",
+      valueUnitList: [UnitValueModel(value: len.toString(), unit: "bpm")]),
   DailyActivityModel(
       label: "steps", valueUnitList: [UnitValueModel(value: "1238", unit: "")]),
   DailyActivityModel(

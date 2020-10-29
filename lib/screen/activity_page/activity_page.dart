@@ -1,3 +1,4 @@
+import 'package:doop/screen/add_volunteer.dart';
 import 'package:flutter/material.dart';
 
 import 'activity_page_animation.dart';
@@ -51,7 +52,7 @@ class _ActivityPageState extends State<ActivityPage>
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Color(0xFF2e2d2d),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,8 +75,14 @@ class _ActivityPageState extends State<ActivityPage>
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: <Widget>[
-            _getListItem(textTheme, 'Walk', Icons.directions_walk),
-            _getListItem(textTheme, 'Run', Icons.directions_run),
+            InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddVoulnteer()));
+              },
+              child: _getListItem(textTheme, 'Add Volunteer', Icons.add),
+            ),
+            _getListItem(textTheme, 'View All', Icons.supervisor_account),
             _getListItem(textTheme, 'Bicycle', Icons.motorcycle),
           ],
         ),
@@ -87,14 +94,14 @@ class _ActivityPageState extends State<ActivityPage>
           children: <Widget>[
             Icon(
               iconData,
-              color: Colors.white,
+              color: Color(0xFFfab300),
             ),
             SizedBox(
               width: 16,
             ),
             Text(
               label,
-              style: textTheme.subhead.copyWith(color: Colors.white),
+              style: textTheme.subhead.copyWith(color: Color(0xFFfab300)),
             )
           ],
         ),
