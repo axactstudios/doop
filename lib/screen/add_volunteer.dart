@@ -18,7 +18,7 @@ class AddVoulnteer extends StatefulWidget {
 
 class _AddVoulnteerState extends State<AddVoulnteer> {
   TextEditingController nameC = new TextEditingController(text: '');
-  TextEditingController lName = new TextEditingController(text: '');
+
   TextEditingController emailC = new TextEditingController(text: '');
   TextEditingController pwC = new TextEditingController(text: '');
   TextEditingController age = new TextEditingController(text: '');
@@ -31,6 +31,21 @@ class _AddVoulnteerState extends State<AddVoulnteer> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   String url;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    nameC.clear();
+    emailC.clear();
+    pwC.clear();
+    age.clear();
+    bDate.clear();
+    pName.clear();
+    address.clear();
+    mCondition.clear();
+    instruction.clear();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -447,8 +462,13 @@ class _AddVoulnteerState extends State<AddVoulnteer> {
                           ),
                           SizedBox(height: 15),
                           InkWell(
-                            onTap: () {
-                              _createUser(emailC.text, pwC.text, context);
+                            onTap: () async {
+                              await _createUser(emailC.text, pwC.text, context);
+                              Fluttertoast.showToast(
+                                  msg: 'Volunteer has been registered',
+                                  toastLength: Toast.LENGTH_LONG,
+                                  gravity: ToastGravity.CENTER);
+                              Navigator.pop(context);
                               // Navigator
                             },
                             child: Container(
