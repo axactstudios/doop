@@ -532,14 +532,21 @@ class _ViewAllState extends State<ViewAll> {
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: <Widget>[
-                                                              Text(
-                                                                '${volunteers[i].name}',
-                                                                style: TextStyle(
-                                                                    fontFamily:
-                                                                        'Poppins',
-                                                                    fontSize:
-                                                                        pHeight *
-                                                                            0.03),
+                                                              Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.5,
+                                                                child: Text(
+                                                                  '${volunteers[i].name}',
+                                                                  style: TextStyle(
+                                                                      fontFamily:
+                                                                          'Poppins',
+                                                                      fontSize:
+                                                                          pHeight *
+                                                                              0.03),
+                                                                ),
                                                               ),
                                                               Text(
                                                                 volunteers[i]
@@ -557,20 +564,27 @@ class _ViewAllState extends State<ViewAll> {
                                                                           0.75),
                                                                 ),
                                                               ),
-                                                              Text(
-                                                                volunteers[i]
-                                                                    .email,
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  fontSize:
-                                                                      pHeight *
-                                                                          0.02,
-                                                                  color: Colors
-                                                                      .black
-                                                                      .withOpacity(
-                                                                          0.55),
+                                                              Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.5,
+                                                                child: Text(
+                                                                  volunteers[i]
+                                                                      .email,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'Poppins',
+                                                                    fontSize:
+                                                                        pHeight *
+                                                                            0.02,
+                                                                    color: Colors
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.55),
+                                                                  ),
                                                                 ),
                                                               ),
                                                               Text(

@@ -25,6 +25,8 @@ class _AddVoulnteerState extends State<AddVoulnteer> {
   TextEditingController bDate = new TextEditingController(text: '');
   TextEditingController pName = new TextEditingController(text: '');
   TextEditingController address = new TextEditingController(text: '');
+  TextEditingController city = new TextEditingController(text: '');
+
   TextEditingController mCondition = new TextEditingController(text: '');
   TextEditingController instruction = new TextEditingController(text: '');
   int selectedIndex = 0;
@@ -42,6 +44,7 @@ class _AddVoulnteerState extends State<AddVoulnteer> {
     bDate.clear();
     pName.clear();
     address.clear();
+    city.clear();
     mCondition.clear();
     instruction.clear();
     super.initState();
@@ -312,6 +315,31 @@ class _AddVoulnteerState extends State<AddVoulnteer> {
                         ),
                       ),
                       SizedBox(height: 15),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        decoration: BoxDecoration(
+                            color: Color(0xfffab300).withOpacity(0.7),
+                            border: Border.all(color: Color(0xFFfab300)),
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(10),
+                                topRight: Radius.circular(10))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: city,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                                contentPadding: EdgeInsets.only(
+                                    left: 15, bottom: 10, top: 10, right: 15),
+                                hintText: 'City'),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 15),
                       InkWell(
                         onTap: () {
                           setState(() {
@@ -523,6 +551,7 @@ class _AddVoulnteerState extends State<AddVoulnteer> {
         'bDate': bDate.text,
         'pName': pName.text,
         'address': address.text,
+        'city': city.text,
         'mCondition': mCondition.text,
         'instruction': instruction.text
       });

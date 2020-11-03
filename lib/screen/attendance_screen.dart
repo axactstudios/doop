@@ -11,9 +11,9 @@ class _AttendanceState extends State<Attendance> {
   List<String> locations = ['Delhi', 'Noida'];
   String locationValue = 'Delhi';
   List<Volunteer> volunteers = List<Volunteer>();
-  DateTime date = new DateTime(
-      DateTime.now().year, DateTime.now().month, DateTime.now().day);
-  String groupValue = 'present';
+  String date =
+      '${DateTime.now().year.toString()}${DateTime.now().month.toString()}${DateTime.now().day.toString()}';
+  String groupValue = 'none';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,41 +26,57 @@ class _AttendanceState extends State<Attendance> {
             child: Column(
               children: [
                 Container(
+                  decoration: BoxDecoration(
+                      color: Color(0xFFfab300).withOpacity(0.7),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                   width: MediaQuery.of(context).size.width,
-                  height: 100,
-                  child: Row(
-                    children: [
-                      Text('Select Location'),
-                      Container(
-                        height: 100,
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: DropdownButtonFormField(
-                          value: locationValue,
-                          icon: Icon(Icons.arrow_downward),
-                          decoration: InputDecoration(
-                            labelText: "Select Location",
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          items: locations.map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (String newValue) {
-                            setState(() {
-                              locationValue = newValue;
-                            });
-                          },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('Filter volunteers by location'),
                         ),
-                      )
-                    ],
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 70,
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          child: DropdownButtonFormField(
+                            value: locationValue,
+                            icon: Icon(Icons.arrow_downward),
+                            decoration: InputDecoration(
+                              labelText: "Select Location",
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            items: locations.map((String value) {
+                              return new DropdownMenuItem<String>(
+                                value: value,
+                                child: new Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (String newValue) {
+                              setState(() {
+                                locationValue = newValue;
+                              });
+                            },
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Available Volunteers',
+                    style: TextStyle(
+                        color: Color.fromRGBO(196, 141, 0, 1), fontSize: 20),
+                  ),
                 ),
                 StreamBuilder(
                     stream: Firestore.instance.collection('Users').snapshots(),
@@ -91,75 +107,152 @@ class _AttendanceState extends State<Attendance> {
                         child: Container(
                           // color: Colors.black,
                           width: MediaQuery.of(context).size.width,
-                          child: ListView.builder(
-                              itemCount: volunteers.length,
-                              itemBuilder: (context, index) {
-                                return Row(
-                                  children: [
-                                    Text(volunteers[index].name),
-                                    SizedBox(
-                                      width: 20,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListView.builder(
+                                itemCount: volunteers.length,
+                                itemBuilder: (context, index) {
+                                  return Card(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              CircleAvatar(
+                                                  backgroundImage: NetworkImage(
+                                                      volunteers[index].pURL)),
+                                              Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.5,
+                                                  child: Text(
+                                                      volunteers[index].name)),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.4,
+                                                child: Row(
+                                                  children: [
+                                                    Radio(
+                                                        value: 'present',
+                                                        groupValue: groupValue,
+                                                        onChanged: (value) {
+                                                          setState(() {
+                                                            groupValue = value;
+                                                          });
+                                                          Firestore.instance
+                                                              .collection(
+                                                                  'Users')
+                                                              .where('mail',
+                                                                  isEqualTo:
+                                                                      volunteers[
+                                                                              index]
+                                                                          .email)
+                                                              .getDocuments()
+                                                              .then((value) =>
+                                                                  value
+                                                                      .documents
+                                                                      .forEach(
+                                                                          (element) {
+                                                                    var docId =
+                                                                        element
+                                                                            .documentID;
+                                                                    Firestore
+                                                                        .instance
+                                                                        .collection(
+                                                                            'Users')
+                                                                        .document(
+                                                                            docId)
+                                                                        .updateData({
+                                                                      date.toString():
+                                                                          'present'
+                                                                    });
+                                                                  }));
+                                                        }),
+                                                    Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.2,
+                                                        child: Text('Present')),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.4,
+                                                child: Row(
+                                                  children: [
+                                                    Radio(
+                                                        value: 'absent',
+                                                        groupValue: groupValue,
+                                                        onChanged: (value) {
+                                                          setState(() {
+                                                            groupValue = value;
+                                                          });
+
+                                                          Firestore.instance
+                                                              .collection(
+                                                                  'Users')
+                                                              .where('mail',
+                                                                  isEqualTo:
+                                                                      volunteers[
+                                                                              index]
+                                                                          .email)
+                                                              .getDocuments()
+                                                              .then((value) =>
+                                                                  value
+                                                                      .documents
+                                                                      .forEach(
+                                                                          (element) {
+                                                                    var docId =
+                                                                        element
+                                                                            .documentID;
+                                                                    Firestore
+                                                                        .instance
+                                                                        .collection(
+                                                                            'Users')
+                                                                        .document(
+                                                                            docId)
+                                                                        .updateData({
+                                                                      date.toString():
+                                                                          'absent'
+                                                                    });
+                                                                  }));
+                                                        }),
+                                                    Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.2,
+                                                      child: Text(
+                                                        'Absent',
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    Radio(
-                                        value: 'present',
-                                        groupValue: groupValue,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            groupValue = value;
-                                          });
-                                          Firestore.instance
-                                              .collection('Users')
-                                              .where('mail',
-                                                  isEqualTo:
-                                                      volunteers[index].email)
-                                              .getDocuments()
-                                              .then((value) => value.documents
-                                                      .forEach((element) {
-                                                    element.data.update(
-                                                        date.toString(),
-                                                        (value) => 'Present');
-                                                  }));
-                                        }),
-                                    Radio(
-                                        value: 'absent',
-                                        onChanged: (value) {
-                                          setState(() {
-                                            groupValue = value;
-                                          });
-                                          Future<Map<String, dynamic>>
-                                              votedown() async {
-                                            Map<String, dynamic> comdata =
-                                                <String, dynamic>{
-                                              date.toString(): 'Absent'
-                                            };
-                                            return comdata;
-                                          }
-
-                                          Firestore.instance
-                                              .collection('Users')
-                                              .where('mail',
-                                                  isEqualTo:
-                                                      volunteers[index].email)
-                                              .getDocuments()
-                                              .then((value) => value.documents
-                                                      .forEach((element) {
-                                                    // element.
-                                                    // print(element.data);
-
-                                                    element.data.addEntries([
-                                                      MapEntry('key', 'value')
-                                                    ]);
-                                                    // element.data.addAll(
-                                                    //     {'other': 'dfsf'});
-                                                    print('updated');
-                                                    // element.data.update(
-                                                    //     date.toString(),
-                                                    //     (value) => 'Absent');
-                                                  }));
-                                        }),
-                                  ],
-                                );
-                              }),
+                                  );
+                                }),
+                          ),
                         ),
                       );
                     }),
