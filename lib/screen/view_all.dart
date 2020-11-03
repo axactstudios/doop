@@ -42,6 +42,7 @@ class _ViewAllState extends State<ViewAll> {
                           snap.data.documents[i]['age'],
                           snap.data.documents[i]['pName'],
                           snap.data.documents[i]['address'],
+                          snap.data.documents[i]['city'],
                           snap.data.documents[i]['bDate'],
                           snap.data.documents[i]['mail'],
                           snap.data.documents[i]['instruction'],

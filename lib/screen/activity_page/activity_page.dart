@@ -1,4 +1,5 @@
 import 'package:doop/screen/add_volunteer.dart';
+import 'package:doop/screen/attendance_screen.dart';
 import 'package:doop/screen/view_all.dart';
 import 'package:flutter/material.dart';
 
@@ -89,8 +90,14 @@ class _ActivityPageState extends State<ActivityPage>
                       MaterialPageRoute(builder: (context) => ViewAll()));
                 },
                 child: _getListItem(textTheme, 'View All', Icons.list)),
-            _getListItem(
-                textTheme, 'Take Attendance', Icons.supervisor_account),
+            InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Attendance()));
+              },
+              child: _getListItem(
+                  textTheme, 'Take Attendance', Icons.supervisor_account),
+            )
           ],
         ),
       ));

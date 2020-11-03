@@ -6,8 +6,10 @@ class Volunteer {
   String bdate;
   String pName;
   String address;
+  String city;
+
   String mCondition;
   String instructions;
   Volunteer(this.name, this.mCondition, this.age, this.pName, this.address,
-      this.bdate, this.email, this.instructions, this.pURL);
+      this.city, this.bdate, this.email, this.instructions, this.pURL);
 }
